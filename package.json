@@ -1,0 +1,27 @@
+{
+  "name": "organic-shop-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc",
+    "serve": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "1. Create an empty project using intelliJ IDEA.\r    `File -> New -> Project -> Empty Project`\r 2. Then open a terminal and execute the following command to initialize a `package.json` file.\r ```shell\r npm init -y\r ```\r 3. As per next step, let's install `express` and `typescript`.\r ```shell\r npm install express\r npm install -D typescript ts-node @types/node @types/express\r ```\r 4. In npm, there are two types of dependencies:",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.10",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
