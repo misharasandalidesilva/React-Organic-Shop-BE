@@ -29,56 +29,62 @@ export const saveProduct = (req: Request, res: Response) => {
     }
 }
 
-// Controller Functions to handle get product
 export const getProduct = (req: Request, res: Response) => {
-    const productId = parseInt(req.params.id)
-    if (isNaN(productId)) {
-        res.status(400).json({
-            error: 'Invalid product id'
-        });
+    const productId= parseInt(req.params.id);
+    if(isNaN(productId)) {
+        res.status(400).json({error: 'Invalid product id'});
         return;
     }
-    const product = productService.getProductById(productId);
-    if (!product) {
-        res.status(404).json({
-            error: 'Product not found'
-        });
-        return;
+    try {
+        const product = productService.getProductById(productId);
+        if(!product) {
+            res.status(404).json({error: 'Product not found'});
+            return;
+        }
+        res.status(200).json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error:'Something went wrong'});
     }
-    res.status(200).json(product);
+
 }
 
-// Controller Functions to handle update product
 export const updateProduct = (req: Request, res: Response) => {
-    const productId = parseInt(req.params.id);
-    if (isNaN(productId)) {
-        res.status(400).json({error: 'Invalid product ID'}
-        );
+    const productId= parseInt(req.params.id);
+    if(isNaN(productId)) {
+        res.status(400).json({error: 'Invalid product id'});
         return;
     }
-    const updatedData = req.body;
-    const updatedProduct = productService.updateProduct(productId, updatedData);
-    if (!updatedProduct) {
-        res.status(400).json({error: 'Failed to update product'}
-        );
-        return;
+    try {
+        const product = productService.updateProduct(productId, req.body);
+        if(!updateProduct) {
+            res.status(404).json({error: 'Product not found'});
+            return;
+        }
+        res.status(200).json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error:'Something went wrong'});
     }
-    res.status(200).json(updatedProduct);
+
 }
 
 export const deleteProduct = (req: Request, res: Response) => {
-    const productId = parseInt(req.params.id);
-    if (isNaN(productId)) {
-        res.status(400).json({error: 'Invalid product ID'}
-        );
+    const productId= parseInt(req.params.id);
+    if(isNaN(productId)) {
+        res.status(400).json({error: 'Invalid product id'});
         return;
     }
-    const deleteProduct = productService.deleteProduct(productId);
-    if (!deleteProduct) {
-        res.status(404).json({error: 'Product not found'}
-        );
-        return;
+    try {
+        const product = productService.deleteProduct(productId);
+        if(!deleteProduct) {
+            res.status(404).json({error: 'Product not found'});
+            return;
+        }
+        res.status(200).json({message: 'Product deleted successfully'});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error:'Something went wrong'});
     }
-    res.status(200).json({message: 'Product deleted successfully'});
 
 }
